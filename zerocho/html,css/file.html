@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <script>
+        //window 파일 api
+        const file = document.getElementById('upload');
+        file.onchange = function (e) {
+            var files = e.target.files; // FileList 객체
+            console.log(files); // { 0: File, 1: File, length: 2 }
+        };
+        //파일 읽는 방법
+        //ex onload로 콜백
+        file.onchange = function (e) {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(e.target.files[0]);
+            fileReader.onload = function (e) {
+                console.log(e.target.result);
+            };
+        };
+        //readAsText 텍스트로 읽음
+        //readAsDataURL 파일 정보를 주소처럼 활용 //미리보기 document.getElementById('이미지').src = e.target.result;
+        //readAsArrayBuffer
+        //readAsBinaryString
+        //드래그앤드롭 api
+    </script>
+    <body>
+        <input type="file" id="upload" multiple />
+    </body>
+</html>

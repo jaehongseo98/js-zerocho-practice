@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>History API</title>
+    </head>
+    <body>
+        <div id="state"></div>
+        <button id="pushState">pushState</button>
+        <button id="replaceState">replaceState</button>
+        <script>
+            //history.back() forward() go() //뒤로 앞으로 지정
+            document
+                .querySelector('#pushState')
+                .addEventListener('click', function () {
+                    window.history.pushState(
+                        { data: 'pushpush' }, //바뀐 주소 저장할 데이터 객체
+                        'title을 pushState로', //바꿀 제목
+                        '/pushpush', //바꿀주소
+                    );
+                });
+            document
+                .querySelector('#replaceState')
+                .addEventListener('click', function () {
+                    history.replaceState(
+                        { data: 'replace' },
+                        'title을 replaceState로',
+                        '/replace',
+                    );
+                });
+            //뒤로 가거나 앞으로 갔을때
+            window.addEventListener('popstate', function () {
+                console.log('popstate', history.state);
+                document.querySelector('#state').innerHTML = JSON.stringify(
+                    history.state,
+                );
+            });
+        </script>
+    </body>
+</html>

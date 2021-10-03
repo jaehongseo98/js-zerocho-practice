@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <script>
+        //form data 객체
+        //이미지를 ajax로 업로드할 경우사용
+        var formData = new FormData();
+        formData.append('name', 'zerocho');
+        formData.append('item', 'orange');
+        formData.append('item', 'melon');
+
+        // var xhr = new XMLHttpRequest();
+        // xhr.onreadystatechange = function () {
+        //     // 요청에 대한 콜백
+        //     if (xhr.readyState === xhr.DONE) {
+        //         // 요청이 완료되면
+        //         if (xhr.status === 200 || xhr.status === 201) {
+        //             console.log(xhr.responseText);
+        //         } else {
+        //             console.error(xhr.responseText);
+        //         }
+        //     }
+        // };
+        // xhr.open('GET', 'https://www.zerocho.com/api/get'); // 메소드와 주소 설정
+        // xhr.send(); // 요청 전송
+        // // xhr.abort(); // 전송된 요청 취소
+
+        //res에서 볼수 있는것 text, arrayBuffer, blob, json, formData
+        fetch('https://www.zerocho.com/api/get')
+            .then((res) => {
+                if (res.status === 200 || res.status === 201) {
+                    // 성공을 알리는 HTTP 상태 코드면
+                    res.text().then((text) => console.log(text)); // 텍스트 출력
+                } else {
+                    // 실패를 알리는 HTTP 상태 코드면
+                    console.error(res.statusText);
+                }
+            })
+            .catch((err) => console.error(err));
+
+        const body = { name: 'zerocho' };
+        fetch('https://www.zerocho.com/api/post/json', {
+            method: 'POST',
+            body,
+            headers: new Headers(), // 이 부분은 따로 설정하고싶은 header가 있다면 넣으세요
+        })
+            .then((res) => {
+                if (res.status === 200 || res.status === 201) {
+                    res.json().then((json) => console.log(json));
+                } else {
+                    console.error(res.statusText);
+                }
+            })
+            .catch((err) => console.error(err));
+    </script>
+    <body></body>
+</html>

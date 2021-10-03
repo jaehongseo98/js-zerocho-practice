@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- meta 문서에 대한 설명-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <!-- html 공간
+        block   한줄 차지
+        inline  내용물의 길이만큼
+        inline-block 내용물의 길이만큼 -->
+    <body>
+        <!-- href 주소 target 창을 어디에 띄울건지 -->
+        <a href="https://www.naver.com"></a>
+
+        <!-- action 정보 보낼 서버 주소 methode 보내는 방식
+                get은 주소를 통해 보내고 post는 요청 body통해 전달 -->
+        <!-- name 서버에서 받을 이름-->
+        <form action="/api/join" method="POST">
+            <input
+                type="text"
+                placeholder="아이디"
+                id="id"
+                name="userid"
+                value="ss"
+            />
+        </form>
+        <audio></audio>
+        <video></video>
+        <iframe src="연결하고자 하는 웹페이지"></iframe>
+    </body>
+    <script>
+        //window.navigator 안에 gps 정보
+        function getLocation() {
+            if (navigator.geolocation) {
+                // GPS를 지원하면
+                //position 객체 안에 timestamp(현재 시간)과 coords 객체
+                //위도 경도를 구글 지도나 카카오 지도 API에 넣으면 주소랑 지도상의 위치를 알아낼 수 있다.
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        alert(
+                            position.coords.latitude +
+                                ' ' +
+                                position.coords.longitude,
+                        );
+                    },
+                    function (error) {
+                        console.error(error);
+                    },
+                    {
+                        enableHighAccuracy: false,
+                        maximumAge: 0,
+                        timeout: Infinity,
+                    },
+                );
+            } else {
+                alert('GPS를 지원하지 않습니다');
+            }
+        }
+        getLocation();
+
+        //위치가 변할 때마다 일정 주기로 watchPosition 안의 콜백 함수가 호출
+        // var watchId = navigator.geolocation.watchPosition(function (position) {
+        //     console.log(position.coords);
+        // });
+
+        // navigator.geolocation.clearWatch(watchId); //해제
+    </script>
+</html>

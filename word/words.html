@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>쿵쿵따</title>
+    </head>
+
+    <body>
+        <div><span id="order">1</span>번째 참가자</div>
+        <div>제시어: <span id="word"></span></div>
+        <input type="text" />
+        <button>입력</button>
+        <script>
+            const number = parseInt(prompt('몇 명이 참가하나요'), 10); //10진법
+            alert(number);
+            const $button = document.querySelector('button');
+            const $input = document.querySelector('input');
+            const $word = document.querySelector('#word');
+            const $order = document.querySelector('#order');
+            let word; //제시어
+            let newword; //새로운 단어
+
+            $button.addEventListener('click', () => {
+                if (!word) {
+                    word = newword;
+                    $word.textContent = word;
+                    $input.value = '';
+
+                    const order = Number($order.textContent);
+                    if (order + 1 > number) {
+                        $order.textContent = 1;
+                    } else {
+                        $order.textContent = order + 1;
+                    }
+                    $input.value = '';
+                    $input.focus();
+                } else {
+                    if (word[word.length - 1] === newword[0]) {
+                        word = newword;
+                        $word.textContent = word;
+                        $input.value = '';
+                        const order = Number($order.textContent);
+                        if (order + 1 > number) {
+                            $order.textContent = 1;
+                        } else {
+                            $order.textContent = order + 1;
+                        }
+                    }
+                }
+            });
+
+            $input.addEventListener('input', (e) => {
+                newword = e.target.value;
+            });
+        </script>
+    </body>
+</html>

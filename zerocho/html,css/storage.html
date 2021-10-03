@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <script>
+        //로컬 스토리지 지속적 데이터 키 밸류 보안에 민감하지 않은 데이터들만
+        //세션 스토리지 탭 닫을 경우 제거 키 밸류
+        //document.cookie 쿠키 정보 서버로 계속 전송
+        window.localStorage.setItem('name', 'zerocho');
+        localStorage.setItem('birth', 1994);
+        localStorage.getItem('name'); // zerocho
+        localStorage.getItem('birth'); // 1994 (문자열)
+        localStorage.removeItem('birth');
+        localStorage.getItem('birth'); // null (삭제됨)
+        localStorage.clear(); // 전체 삭제
+
+        //객체 저장하는 법
+        localStorage.setItem('object', JSON.stringify({ a: 'b' })); //객체를 json
+        JSON.parse(localStorage.getItem('object')); // { a: 'b' }
+
+        window.sessionStorage.setItem('name', 'zerocho'); //로컬과 똑같음
+    </script>
+    <body></body>
+</html>
