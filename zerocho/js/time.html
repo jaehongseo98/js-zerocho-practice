@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <script>
+        // setTimeout(function () {
+        //     alert('1초 뒤');
+        // }, 1000); //지정 초 뒤 실행
+
+        // setInterval(function () {
+        //     console.log('1초마다');
+        // }, 1000); //지정 초마다
+
+        // var timeout = setTimeout(function () {}, 1000);
+        // clearTimeout(timeout);
+        //timer
+
+        // const screen1 = window.screen;
+        // console.log(navigator); //브라우저 운영체제 등 정보
+        console.log(screen.availHeight); // 작업 표시줄 제외높이
+        console.log(screen.availWidth); // 작업 표시줄 제외 너비
+        console.log(screen.colorDepth); // 24
+
+        //location
+
+        //history 페이지를 이동하지 않고 단순히 주소만 바꿈
+        //html5에서 추가 history.pushState(객체, 제목, 주소)
+        //객체 부분에 페이지 정보 추가
+
+        document.getElementById(아이디);
+        document.querySelector(선택자);
+        document.querySelectorAll(선택자);
+        document.createElement(태그명);
+
+        const div = document.createElement('div');
+        const text = document.createTextNode('텍스트');
+        const fragment = document.createDocumentFragment();
+        div.appendChild(text);
+        fragment.appendChild(div);
+        document.body.appendChild(fragment);
+        //프래그먼트를 추가해 성능 개선
+    </script>
+    <body></body>
+</html>

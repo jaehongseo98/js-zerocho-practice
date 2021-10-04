@@ -1,0 +1,63 @@
+스코프 체인
+내부 함수에서는 외부 함수의 변수에 접근 O
+외부 함수에서는 내부 함수의 변수에 접근 X
+
+스코프는 함수를 호출할 때가 아니라 선언할 때 생긴다
+
+실행 컨텍스트 함수 호출 때 생겨나고 끝나면 종료
+this window 객체
+var name = 'zero'; // (1)변수 선언 (6)변수 대입
+function wow(word) { // (2)변수 선언 (3)변수 대입
+  console.log(word + ' ' + name); // (11)
+}
+function say () { // (4)변수 선언 (5)변수 대입
+  var name = 'nero'; // (8)
+  console.log(name); // (9)
+  wow('hello'); // (10)
+}
+say(); // (7)
+
+
+1. '전역 컨텍스트': {
+  변수객체: {
+    arguments: null,
+    variable: ['name', 'wow', 'say'],  name엔 zero 나머지는 function
+  },
+  scopeChain: ['전역 변수객체'],
+  this: window,
+}
+
+2. say 컨텍스트': {
+  변수객체: {
+    arguments: null,
+    variable: ['name'], // 초기화 후 [{ name: 'nero' }]가 됨
+  },
+  scopeChain: ['say 변수객체', '전역 변수객체'],
+  this: window,
+}
+
+3.wow 컨텍스트': {
+  변수객체: {
+    arguments: [{ word : 'hello' }],
+    variable: null,
+  },
+  scopeChain: ['wow 변수객체', '전역 변수객체'],
+  this: window,
+}
+
+
+호이스팅
+변수를 선언하고 초기화했을 때 선언 부분이 최상단으로 끌어올려지는 현상
+함수 선언식은 되지만 함수 표현식은 안된다,
+sayWow(); // (3)
+sayYeah(); // (5) 여기서 대입되기 전에 호출해서 에러
+var sayYeah = function() { // (1) 선언 (6) 대입
+  console.log('yeah');
+}
+function sayWow() { // (2) 선언과 동시에 초기화(호이스팅)
+  console.log('wow'); // (4)
+}
+
+클로저
+안의 함수에서 밖의 함수에 스코프 접근 가능
+클로저는 내부에 선언된 함수가 외부함수의 지역변수를 사용해 줬을 때만 클로저라고 선언된다.
