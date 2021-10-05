@@ -21,9 +21,12 @@
             return log;
         }
 
+        function ss() {
+            console.log(this);
+        }
         //arrow function 정적으로 결정 메서드 만든 객체 잡음
         const click = () => {
-            console.log(this); //window
+            console.log(this); //window //상위스코프 this를 가리킴
         };
 
         class SS {
@@ -35,11 +38,12 @@
                 console.log(this); //new 하면서 객체가 window에서 바뀌는듯
             };
         }
+        ss();
 
         const sss = new SS();
-        btn.addEventListener('click', clicks);
+        btn.addEventListener('click', ss);
         btn.addEventListener('click', sss.clicks);
         btn.addEventListener('click', sss.click);
-        btn.addEventListener('click', clicks.log);
+        // btn.addEventListener('click', clicks.log);
     </script>
 </html>
