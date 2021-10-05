@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button class="btn" value="ss">밸류</button>
+    </body>
+    <script>
+        const btn = document.querySelector('.btn');
+
+        //this가 메서드를 사용한 요소 태그를 선택
+        function clicks() {
+            console.log(this.value); //this는 button태그
+            function log() {
+                return console.log('되나요');
+            }
+            return log;
+        }
+
+        //arrow function 정적으로 결정 메서드 만든 객체 잡음
+        const click = () => {
+            console.log(this); //window
+        };
+
+        class SS {
+            clicks() {
+                console.log(this);
+            }
+
+            click = () => {
+                console.log(this); //new 하면서 객체가 window에서 바뀌는듯
+            };
+        }
+
+        const sss = new SS();
+        btn.addEventListener('click', clicks);
+        btn.addEventListener('click', sss.clicks);
+        btn.addEventListener('click', sss.click);
+        btn.addEventListener('click', clicks.log);
+    </script>
+</html>
