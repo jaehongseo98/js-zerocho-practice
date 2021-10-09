@@ -1,3 +1,1 @@
-# js-zerocho-practice
-
-## youtube zerocho js
+### youtube zerocho js 공부
